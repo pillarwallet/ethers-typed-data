@@ -34,22 +34,6 @@ interface EIP712TypedData {
   value: any;
 }
 
-export type Version = 'V1' | 'V2' | 'V3' | 'V4';
-
-export interface EthEncryptedData {
-  version: string;
-  nonce: string;
-  ephemPublicKey: string;
-  ciphertext: string;
-}
-
-export type SignedMsgParams<D> = Required<MsgParams<D>>;
-
-export interface MsgParams<D> {
-  data: D;
-  sig?: string;
-}
-
 interface MessageTypeProperty {
   name: string;
   type: string;
@@ -72,7 +56,7 @@ export interface TypedMessage<T extends MessageTypes> {
   message: object;
 }
 
-const TYPED_MESSAGE_SCHEMA = {
+export const TYPED_MESSAGE_SCHEMA = {
   type: 'object',
   properties: {
     types: {
@@ -95,43 +79,6 @@ const TYPED_MESSAGE_SCHEMA = {
   },
   required: ['types', 'primaryType', 'domain', 'message'],
 };
-
-function padWithZeroes(number: string, length: number): string {
-  let myString = `${number}`;
-  while (myString.length < length) {
-    myString = `0${myString}`;
-  }
-  return myString;
-}
-
-/**
- * @param typedData - Array of data along with types, as per EIP712.
- * @returns Buffer
- */
-function typedSignatureHash<T extends MessageTypes>(typedData: TypedData | TypedMessage<T>): Buffer {
-  const error = new Error('Expect argument to be non-empty array');
-  if (typeof typedData !== 'object' || !('length' in typedData) || !typedData.length) {
-    throw error;
-  }
-
-  const data = typedData.map(function (e) {
-    return e.type === 'bytes' ? ethUtil.toBuffer(e.value) : e.value;
-  });
-  const types = typedData.map(function (e) {
-    return e.type;
-  });
-  const schema = typedData.map(function (e) {
-    if (!e.name) {
-      throw error;
-    }
-    return `${e.type} ${e.name}`;
-  });
-
-  return ethAbi.soliditySHA3(
-    ['bytes32', 'bytes32'],
-    [ethAbi.soliditySHA3(new Array(typedData.length).fill('string'), schema), ethAbi.soliditySHA3(types, data)],
-  );
-}
 
 /**
  * A collection of utility functions used for signing typed data
@@ -334,4 +281,4 @@ const TypedDataUtils = {
   },
 };
 
-export { TYPED_MESSAGE_SCHEMA, TypedDataUtils };
+export default TypedDataUtils.sign.bind(TypedDataUtils);
