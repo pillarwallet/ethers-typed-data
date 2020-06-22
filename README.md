@@ -12,6 +12,7 @@ npm install ethers-typed-data-sign --save
 
 ```javascript
 import hashTypedData from 'ethers-typed-data-sign';
+
 const typedData = {
   primaryType: 'Demo',
   domain: {
