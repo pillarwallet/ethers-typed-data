@@ -1,0 +1,56 @@
+{
+  "name": "ethers-typed-data-sign",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "start": "exit 1",
+    "format": "prettier --write \"{src,test}/**/*.ts\"",
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "prebuild": "rimraf ./dist",
+    "build": "npm run compile",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "compile:watch": "npm run compile -- --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "25.2.3",
+    "@types/node": "13.13.9",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.20.2",
+    "ethers": "^5.0.2",
+    "eth-sig-util": "2.5.3",
+    "jest": "25.5.4",
+    "prettier": "2.0.5",
+    "rimraf": "3.0.2",
+    "ts-jest": "25.5.1",
+    "ts-node": "8.10.2",
+    "typescript": "3.9.3"
+  },
+  "peerDependencies": {
+    "ethers": "^5.0.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "json",
+      "js",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "setupFiles": []
+  }
+}
