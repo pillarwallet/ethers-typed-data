@@ -1,4 +1,4 @@
-import { TypedDataUtils } from './utils';
+import hashTypedData from './utils';
 import { TypedDataUtils as TypedDataUtilsOriginal } from 'eth-sig-util';
 
 it('expect to generate same hash', async () => {
@@ -41,5 +41,5 @@ it('expect to generate same hash', async () => {
     },
   };
 
-  expect(TypedDataUtils.sign(typedData).toString('hex')).toBe(TypedDataUtilsOriginal.sign(typedData).toString('hex'));
+  expect(hashTypedData(typedData).toString('hex')).toBe(TypedDataUtilsOriginal.sign(typedData).toString('hex'));
 });
