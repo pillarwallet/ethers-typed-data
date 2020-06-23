@@ -1,4 +1,4 @@
-# ethers-typed-data-sign
+# ethers-typed-data
 
 Signs typed data as per an extension of the published version of [EIP 712](https://eips.ethereum.org/EIPS/eip-712).
 
@@ -11,7 +11,7 @@ npm install ethers-typed-data-sign --save
 ## Usage
 
 ```javascript
-import hashTypedData from 'ethers-typed-data-sign';
+import hashTypedData from 'ethers-typed-data';
 
 const typedData = {
   primaryType: 'Demo',
