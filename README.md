@@ -1,4 +1,4 @@
-# ethers-typed-data
+# Ethers Typed Data
 
 Signs typed data as per an extension of the published version of [EIP 712](https://eips.ethereum.org/EIPS/eip-712).
 
