@@ -53,3 +53,7 @@ const typedData = {
 };
 const hash = hashTypedData(typedData).toString('hex');
 ```
+
+## License
+
+MIT License.
