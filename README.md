@@ -5,7 +5,7 @@ Signs typed data as per an extension of the published version of [EIP 712](https
 ## Installation
 
 ```
-npm install ethers-typed-data-sign --save
+npm install ethers-typed-data --save
 ```
 
 ## Usage
