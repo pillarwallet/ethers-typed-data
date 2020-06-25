@@ -1,7 +1,7 @@
 {
   "name": "ethers-typed-data",
-  "version": "0.0.3",
-  "description": "",
+  "version": "0.0.4",
+  "description": "Ethers Typed Data",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
