@@ -10,48 +10,38 @@ npm install ethers-typed-data --save
 
 ## Usage
 
-```javascript
-import hashTypedData from 'ethers-typed-data';
+```typescript
+import { buildTypedData, hashTypedData } from 'ethers-typed-data';
 
-const typedData = {
-  primaryType: 'Demo',
-  domain: {
-    verifyingContract: '0xEEb4801FBc9781EEF20801853C1Cb25faB8A7a3b',
-    chainId: 1,
-    name: 'Demo',
-    version: '4',
+const typedData = buildTypedData(
+  {
+    name: 'test',
   },
-  types: {
-    EIP712Domain: [
-      {
-        name: 'name',
-        type: 'string',
-      },
-      {
-        name: 'version',
-        type: 'string',
-      },
-      {
-        name: 'chainId',
-        type: 'uint256',
-      },
-      {
-        name: 'verifyingContract',
-        type: 'address',
-      },
+  'Bid',
+  {
+    Identity: [
+      { type: 'uint256', name: 'userId' },
+      { type: 'address', name: 'wallet' },
     ],
-    Demo: [
-      {
-        name: 'value',
-        type: 'uint256',
-      },
+    Bid: [
+      { type: 'uint256', name: 'amount' },
+      { type: 'Identity', name: 'bidder' },
     ],
   },
-  message: {
-    value: 1,
+  {
+    amount: 100,
+    bidder: {
+      userId: 10,
+      wallet: '0xEEb4801FBc9781EEF20801853C1Cb25faB8A7a3b',
+    },
   },
-};
-const hash = hashTypedData(typedData).toString('hex');
+);
+
+console.log('typed data:', typedData);
+
+const hash = hashTypedData(typedData);
+
+console.log('typed data hash:', hash);
 ```
 
 ## License
