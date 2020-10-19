@@ -1,6 +1,6 @@
 import { constants } from 'ethers';
 import { buildTypedData } from './build-typed-data';
-import { EIP712_DOMAIN_DEFAULT_VERSION } from './constants';
+import { EIP712_DOMAIN_DEFAULT_CHAIN_ID, EIP712_DOMAIN_DEFAULT_VERSION } from './constants';
 
 describe('buildTypedData()', () => {
   it('expect to build typed data with flat type and default domain parameters', () => {
@@ -15,7 +15,7 @@ describe('buildTypedData()', () => {
       },
     );
 
-    expect(typedData.domain.chainId).toBe(1);
+    expect(typedData.domain.chainId).toBe(EIP712_DOMAIN_DEFAULT_CHAIN_ID);
     expect(typedData.domain.verifyingContract).toBe(constants.AddressZero);
     expect(typedData.domain.salt).toBe(constants.HashZero);
     expect(typedData.domain.version).toBe(EIP712_DOMAIN_DEFAULT_VERSION);
@@ -39,7 +39,7 @@ describe('buildTypedData()', () => {
       },
     );
 
-    expect(typedData.domain.chainId).toBe(1);
+    expect(typedData.domain.chainId).toBe(EIP712_DOMAIN_DEFAULT_CHAIN_ID);
     expect(typedData.domain.verifyingContract).toBe(constants.AddressZero);
     expect(typedData.domain.salt).toBe(constants.HashZero);
     expect(typedData.domain.version).toBe(EIP712_DOMAIN_DEFAULT_VERSION);
