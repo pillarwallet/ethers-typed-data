@@ -1,6 +1,11 @@
 import { constants } from 'ethers';
 import { Domain, TypeProperty, TypedData } from './interfaces';
-import { EIP712_DOMAIN_TYPE_NAME, EIP712_DOMAIN_TYPE_PROPERTIES, EIP712_DOMAIN_DEFAULT_VERSION } from './constants';
+import {
+  EIP712_DOMAIN_DEFAULT_CHAIN_ID,
+  EIP712_DOMAIN_DEFAULT_VERSION,
+  EIP712_DOMAIN_TYPE_NAME,
+  EIP712_DOMAIN_TYPE_PROPERTIES,
+} from './constants';
 
 export function buildTypedData<M = any>(
   domain: Domain,
@@ -11,8 +16,7 @@ export function buildTypedData<M = any>(
   return {
     primaryType,
     domain: {
-      // default values
-      chainId: 1,
+      chainId: EIP712_DOMAIN_DEFAULT_CHAIN_ID,
       version: EIP712_DOMAIN_DEFAULT_VERSION,
       verifyingContract: constants.AddressZero,
       salt: constants.HashZero,
